@@ -27,7 +27,7 @@ mongoose
   });
 
 // ミドルウェア
-app.use(cors({ origin: ["https://tactico-client.onrender.com"] }));
+app.use(cors({ origin: ["https://client-ip3g.onrender.com"] }));
 app.use(express.json());
 app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
