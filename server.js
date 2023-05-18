@@ -29,11 +29,6 @@ mongoose
 // ミドルウェア
 app.use(
   cors({
-    origin: "http://localhost:3000",
-  })
-);
-app.use(
-  cors({
     origin: "https://tactico-client.onrender.com",
   })
 );
