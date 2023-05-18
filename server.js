@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-const path = require("path");
 const cors = require("cors");
 const userRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
@@ -30,18 +29,18 @@ mongoose
 // ミドルウェア
 app.use(
   cors({
-    origin: ["https://client-ip3g.onrender.com"],
+    origin: "http://localhost:3000",
+  })
+);
+app.use(
+  cors({
+    origin: "https://tactico-client.onrender.com",
   })
 );
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "../client/build")));
 app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/comments", commentRoute);
-
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/build/index.html"));
-});
 
 app.listen(port, () => console.log(`サーバー起動中 - ポート番号:${port}`));
