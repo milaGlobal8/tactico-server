@@ -33,9 +33,14 @@ app.use(
   })
 );
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "../client/build")));
 app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/comments", commentRoute);
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/build/index.html"));
+});
 
 app.listen(port, () => console.log(`サーバー起動中 - ポート番号:${port}`));
