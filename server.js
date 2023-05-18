@@ -29,7 +29,7 @@ mongoose
 // ミドルウェア
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
+    origin: ["https://client-ip3g.onrender.com"],
   })
 );
 app.use(express.json());
