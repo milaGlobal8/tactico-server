@@ -29,7 +29,7 @@ mongoose
 // ミドルウェア
 app.use(
   cors({
-    origin: "https://tactico-client.onrender.com",
+    origin: ["https://tactico-client.onrender.com"],
   })
 );
 app.use(express.json());
