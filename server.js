@@ -28,7 +28,7 @@ mongoose
 
 // ミドルウェア
 const corsOpts = {
-  origin: "https://tactico-client.onrender.com",
+  origin: "https://client-ip3g.onrender.com/",
   credentials: true,
   methods: ["GET", "POST", "HEAD", "PUT", "PATCH", "DELETE"],
   allowedHeaders: ["Content-Type"],
