@@ -1,13 +1,21 @@
 const router = require("express").Router();
 const Comment = require("../models/Comment");
 const Post = require("../models/Post");
+const User = require("../models/User");
 
 // コメントを作成する
 router.post("/", async (req, res) => {
+  // ユーザーが存在するか確認
+  const user = await User.findById(req.body.userId);
+  if (!user) return res.status(403).json("存在しないユーザーです。");
+  // 投稿が存在するか確認
+  const post = await Post.findById(req.body.postId);
+  if (!post) return res.status(403).json("存在しない投稿です。");
+  // 新しいコメントを作成
   const newComment = new Comment(req.body);
   try {
+    // コメントを保存
     const savedComment = await newComment.save();
-    const post = await Post.findById(req.body.postId);
 
     // 投稿のcommentsにコメントの_idを追加
     await post.updateOne({
