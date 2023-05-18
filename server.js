@@ -27,13 +27,15 @@ mongoose
   });
 
 // ミドルウェア
-app.use(
-  cors({
-    origin: "https://tactico-client.onrender.com", //アクセス許可するオリジン
-    credentials: true, //レスポンスヘッダーにAccess-Control-Allow-Credentials追加
-    optionsSuccessStatus: 200, //レスポンスstatusを200に設定
-  })
-);
+const corsOpts = {
+  origin: "https://tactico-client.onrender.com",
+  credentials: true,
+  methods: ["GET", "POST", "HEAD", "PUT", "PATCH", "DELETE"],
+  allowedHeaders: ["Content-Type"],
+  exposedHeaders: ["Content-Type"],
+};
+
+app.use(cors(corsOpts));
 app.use(express.json());
 app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
