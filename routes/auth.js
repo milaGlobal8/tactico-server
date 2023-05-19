@@ -44,22 +44,30 @@ router.post("/login", async (req, res) => {
     const validPassword = req.body.password === user.password;
     if (!validPassword) return res.status(401).json("パスワードが違います");
 
-    // isAdmin変更
+    // 既にログインしているか確認
+    if (user.isAdmin) {
+      await User.updateOne(
+        { username: user.username },
+        { $set: { isAdmin: false } }
+      );
+      return res
+        .status(403)
+        .json(
+          "すでにログインされていましたので、自動ログアウトいたしました。お手数ですが、もう一度ログインボタンを押してログインしてください。"
+        );
+    }
+
+    // 未ログインのため、isAdmin変更
     if (user) {
       await User.updateOne(
         { username: user.username },
         { $set: { isAdmin: true } }
       );
 
-      // アイコン画像とホーム画像をfirebase(fireStorage)から取得
-      // profilePicture, coverPictureのパスから取得 クライアントでやる
-
       const updatedUser = await User.findOne({ username: req.body.username });
       const { password, secretQuestion, secretAnswer, updatedAt, ...other } =
         updatedUser._doc;
 
-      // const { password, secretQuestion, secretAnswer, updatedAt, ...other } =
-      //   await user._doc;
       return res.status(200).json(other);
     } else {
       return res.status(404).json("ユーザーが見つかりません");
@@ -85,8 +93,6 @@ router.post("/logout", async (req, res) => {
         { $set: { isAdmin: false } }
       );
 
-      // const { password, secretQuestion, secretAnswer, updatedAt, ...other } =
-      //   await user._doc;
       return res.status(200).json("ログアウト成功");
     } else {
       return res.status(404).json("ユーザーが見つかりません");
