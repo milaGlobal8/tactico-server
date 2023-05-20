@@ -44,20 +44,7 @@ router.post("/login", async (req, res) => {
     const validPassword = req.body.password === user.password;
     if (!validPassword) return res.status(401).json("パスワードが違います");
 
-    // 既にログインしているか確認
-    if (user.isAdmin) {
-      await User.updateOne(
-        { username: user.username },
-        { $set: { isAdmin: false } }
-      );
-      return res
-        .status(403)
-        .json(
-          "すでにログインされていましたので、自動ログアウトいたしました。お手数ですが、もう一度ログインボタンを押してログインしてください。"
-        );
-    }
-
-    // 未ログインのため、isAdmin変更
+    // isAdmin変更
     if (user) {
       await User.updateOne(
         { username: user.username },
