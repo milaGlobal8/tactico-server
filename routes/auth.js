@@ -122,34 +122,10 @@ router.put("/reset/password", async (req, res) => {
   }
 });
 
-// ログインする際にユーザー情報isAdminを false → true に変更
-router.put("/change/admin/:id", async (req, res) => {
-  const user = await User.findById(req.params.id);
-
+// サーバー起動
+router.get("/start/server", (req, res) => {
   try {
-    if (user) {
-      await user.updateOne({ $set: { isAdmin: true } });
-      const { password, secretQuestion, secretAnswer, updatedAt, ...other } =
-        user._doc;
-      return res.status(200).json(other);
-    } else {
-      return res.status(401).json("ユーザーIDが違います");
-    }
-  } catch (err) {
-    return res.status(500).json(err);
-  }
-});
-// ログアウトする際にユーザー情報isAdminを true → false に変更
-router.put("/change/noAdmin", async (req, res) => {
-  const user = await User.findById(req.body._id);
-
-  try {
-    if (user) {
-      await user.updateOne({ $set: { isAdmin: false } });
-      return res.status(200).json("承認解除");
-    } else {
-      return res.status(401).json("ユーザーIDが違います");
-    }
+    return res.status(200).json("サーバーが起動しました");
   } catch (err) {
     return res.status(500).json(err);
   }
