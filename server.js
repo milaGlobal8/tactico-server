@@ -28,7 +28,7 @@ mongoose
 
 // ミドルウェア
 const corsOpts = {
-  origin: "https://client-ip3g.onrender.com",
+  origin: "https://tacticojp.com",
   credentials: true,
   methods: ["GET", "POST", "HEAD", "PUT", "PATCH", "DELETE"],
   allowedHeaders: ["Content-Type"],
