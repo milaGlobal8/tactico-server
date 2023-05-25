@@ -110,16 +110,16 @@ Amazon S3 は、非常に低コストでストレージを提供している。�
 
 # ➂ プロジェクトの使用方法
 
-URL：
+URL：https://tacticojp.com/
 ※ 投稿やいいね等の機能をご利用の場合は、新規登録した後にログインをお願いいたします。
 
 # ➃ クレジット
 
 ## 1.チームメンバー
 
-石関隼 Shun Ishizeki
-小笠原駿 Shun Ogasawara
-張思斉 Siqi Zhang
+石関隼 (Shun Ishizeki)
+小笠原駿 (Shun Ogasawara)
+張思斉 (Siqi Zhang)
 
 ## 2.参考資料
 
