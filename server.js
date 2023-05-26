@@ -5,6 +5,7 @@ const userRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
 const postRoute = require("./routes/posts");
 const commentRoute = require("./routes/comments");
+const path = require("path");
 const mongoose = require("mongoose");
 // envファイル変更後はサーバーを再起動するのを忘れない
 require("dotenv").config();
