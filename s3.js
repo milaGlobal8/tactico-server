@@ -13,7 +13,7 @@ const s3 = new S3({
   secretAccessKey,
 });
 
-// uploads a file to s3
+// S3に画像ファイルをアップロードする
 function uploadFile(file) {
   const fileStream = fs.createReadStream(file.path);
 
@@ -27,7 +27,7 @@ function uploadFile(file) {
 }
 exports.uploadFile = uploadFile;
 
-// delete a file from s3
+// S3から画像ファイルを削除する
 function deleteFile(fileKey) {
   const deleteParams = {
     Bucket: bucketName,
@@ -38,7 +38,7 @@ function deleteFile(fileKey) {
 }
 exports.deleteFile = deleteFile;
 
-// downloads a file from s3
+// S3から画像ファイルを取得する
 function getFileStream(fileKey) {
   const downloadParams = {
     Key: fileKey,

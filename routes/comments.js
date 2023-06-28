@@ -31,24 +31,24 @@ router.post("/", async (req, res) => {
 });
 
 // コメントを更新する
-router.put("/:id", async (req, res) => {
-  try {
-    const comment = await Comment.findById(req.params.id);
-    if (comment.userId === req.body.userId) {
-      await comment.updateOne({
-        $set: req.body,
-      });
+// router.put("/:id", async (req, res) => {
+//   try {
+//     const comment = await Comment.findById(req.params.id);
+//     if (comment.userId === req.body.userId) {
+//       await comment.updateOne({
+//         $set: req.body,
+//       });
 
-      return res.status(200).json("コメント編集に成功しました");
-    } else {
-      return res
-        .status(403)
-        .json("他のユーザーのコメントを編集することはできません");
-    }
-  } catch (err) {
-    return res.status(500).json(err);
-  }
-});
+//       return res.status(200).json("コメント編集に成功しました");
+//     } else {
+//       return res
+//         .status(403)
+//         .json("他のユーザーのコメントを編集することはできません");
+//     }
+//   } catch (err) {
+//     return res.status(500).json(err);
+//   }
+// });
 
 // コメントを削除する
 router.delete("/:id", async (req, res) => {
@@ -68,7 +68,7 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-// 特定の投稿にコメントされたコメントを見つける
+// コメントを取得する
 router.get("/:id", async (req, res) => {
   try {
     const comments = await Comment.find({ postId: req.params.id });
