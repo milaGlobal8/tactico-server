@@ -49,7 +49,7 @@ const UserSchema = new mongoose.Schema(
     },
   },
 
-  //   データを格納した日付と時間を記録
+  //  データを格納した日付と時間を記録
   { timestamps: true }
 );
 
