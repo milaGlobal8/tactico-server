@@ -33,7 +33,7 @@ router.put("/:id", async (req, res) => {
 });
 
 // ユーザー情報の取得
-特定のユーザー取得;
+// 特定のユーザー取得;
 router.get("/:id", async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
