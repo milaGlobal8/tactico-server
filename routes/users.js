@@ -33,17 +33,17 @@ router.put("/:id", async (req, res) => {
 });
 
 // ユーザー情報の取得
-// 特定のユーザー取得
-// router.get("/:id", async (req, res) => {
-//   try {
-//     const user = await User.findById(req.params.id);
-//     const { password, secretQuestion, secretAnswer, updatedAt, ...other } =
-//       user._doc;
-//     return res.status(200).json(other);
-//   } catch (err) {
-//     return res.status(500).json(err);
-//   }
-// });
+特定のユーザー取得;
+router.get("/:id", async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    const { password, secretQuestion, secretAnswer, updatedAt, ...other } =
+      user._doc;
+    return res.status(200).json(other);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
 
 // クエリでユーザーを取得
 // router.get("/", async (req, res) => {
