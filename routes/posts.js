@@ -65,24 +65,24 @@ router.delete("/:id/:userId", async (req, res) => {
 });
 
 // すべての投稿取得
-// router.get("/all", async (req, res) => {
-//   try {
-//     const posts = await Post.find();
-//     return res.status(200).json(posts);
-//   } catch (err) {
-//     return res.status(500).json(err);
-//   }
-// });
+router.get("/all", async (req, res) => {
+  try {
+    const posts = await Post.find();
+    return res.status(200).json(posts);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
 
 // 特定の投稿を取得する
-// router.get("/:id", async (req, res) => {
-//   try {
-//     const post = await Post.findById(req.params.id);
-//     return res.status(200).json(post);
-//   } catch (err) {
-//     return res.status(500).json(err);
-//   }
-// });
+router.get("/:id", async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    return res.status(200).json(post);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
 
 // 投稿検索用のAPI   $options:"i" = 大文字小文字を区別しないオプション
 router.get("/search/post/:key", async (req, res) => {
