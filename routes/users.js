@@ -45,21 +45,21 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// クエリでユーザーを取得
-// router.get("/", async (req, res) => {
-//   const userId = req.query.userId;
-//   const username = req.query.username;
-//   try {
-//     const user = userId
-//       ? await User.findById(userId)
-//       : await User.findOne({ username: username });
-//     // パスワードといつ更新されたかの情報は秘匿にするため抜き出す
-//     const { password, updatedAt, ...other } = user._doc;
-//     return res.status(200).json(other);
-//   } catch (err) {
-//     return res.status(500).json(err);
-//   }
-// });
+// コメントしたユーザーを取得
+router.get("/", async (req, res) => {
+  const userId = req.query.userId;
+  const username = req.query.username;
+  try {
+    const user = userId
+      ? await User.findById(userId)
+      : await User.findOne({ username: username });
+    // パスワードといつ更新されたかの情報は秘匿にするため抜き出す
+    const { password, updatedAt, ...other } = user._doc;
+    return res.status(200).json(other);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
 
 // ユーザー検索用のAPI   $options:"i" = 大文字小文字を区別しないオプション
 router.get("/search/user/:key", async (req, res) => {
